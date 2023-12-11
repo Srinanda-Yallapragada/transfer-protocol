@@ -172,23 +172,10 @@ MonoBehaviour:
   start: {fileID: 1245700087}
   end: {fileID: 1041134188}
   segmentMaterial: {fileID: 0}
-  simplified: 0
   segments: 16
   diameter: 0.1
   segmentMass: 0.1
-  damper: 1
   drag: 10
-  spring: 0.25
-  restingForce: 1.45
-  animate: 0
-  animatedSegments: 4
-  animationStartDelay: 0.55
-  minForce: 1.2
-  maxForce: 1.75
-  increase: 0.1
-  increaseWaitTime: 0.1
-  minHoldTime: 0.25
-  maxHoldTime: 0.5
 --- !u!1001 &167493521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,7 +789,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 85.9, y: 19.8, z: 9.3}
-  m_LocalScale: {x: 50, y: 44.25909, z: 50}
+  m_LocalScale: {x: 50, y: 44.25909, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1350,7 +1337,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -89.7, y: 19.8, z: 9.3}
-  m_LocalScale: {x: 50, y: 44.25909, z: 50}
+  m_LocalScale: {x: 50, y: 44.25909, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
