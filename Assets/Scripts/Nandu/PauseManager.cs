@@ -21,7 +21,8 @@ public class PauseManager : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        Debug.Log("Switching to main menu");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
         //add scene manager here to load the correct scene
     }
 }
