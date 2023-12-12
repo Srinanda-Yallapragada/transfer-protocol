@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class ChooseWire : MonoBehaviour
 {
@@ -9,9 +12,23 @@ public class ChooseWire : MonoBehaviour
 	public Material outline;
 	public Material noOutline;
 
-    bool[] isLaneOutlined;
-    int prevIndex = -1;
-    int currIndex = -1;
+    public Button byteBtn;
+    public Button kiloBtn;
+    public Button megaBtn;
+    public Button gigaBtn;
+
+    public Text byteTxt;
+    public Text kiloTxt;
+    public Text megaTxt;
+    public Text gigaTxt;
+
+    private bool[] isLaneOutlined;
+    private int prevIndex = -1;
+    private int currIndex = -1;
+    private float byteTimer;  
+    private float kiloTimer;
+    private float megaTimer;
+    private float gigaTimer;
 
     void Start()
     {
@@ -60,6 +77,51 @@ public class ChooseWire : MonoBehaviour
                 }
             }
         }
+
+        // Timers
+        if (Mathf.FloorToInt(byteTimer) > 0)
+        {
+            byteTimer -= Time.deltaTime;
+            byteTxt.text = Mathf.FloorToInt(byteTimer) + "s";
+        } 
+        else if (Mathf.FloorToInt(byteTimer) <= 0)
+        {
+            byteTxt.text = "";
+            byteBtn.interactable = true;
+        }
+
+        if (Mathf.FloorToInt(kiloTimer) > 0)
+        {
+            kiloTimer -= Time.deltaTime;
+            kiloTxt.text = Mathf.FloorToInt(kiloTimer) + "s";
+        }
+        else if (Mathf.FloorToInt(kiloTimer) <= 0)
+        {
+            kiloTxt.text = "";
+            kiloBtn.interactable = true;
+        }
+
+        if (Mathf.FloorToInt(megaTimer) > 0)
+        {
+            megaTimer -= Time.deltaTime;
+            megaTxt.text = Mathf.FloorToInt(megaTimer) + "s";
+        }
+        else if (Mathf.FloorToInt(megaTimer) <= 0)
+        {
+            megaTxt.text = "";
+            megaBtn.interactable = true;
+        }
+
+        if (Mathf.FloorToInt(gigaTimer) > 0)
+        {
+            gigaTimer -= Time.deltaTime;
+            gigaTxt.text = Mathf.FloorToInt(gigaTimer) + "s";
+        }
+        else if (Mathf.FloorToInt(gigaTimer) <= 0)
+        {
+            gigaTxt.text = "";
+            gigaBtn.interactable = true;
+        }
     }
 
     void Select(int index)
@@ -95,17 +157,25 @@ public class ChooseWire : MonoBehaviour
     public void SpawnByte()
     {
         lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(3);
+        byteTimer = 2;
+        byteBtn.interactable = false;
     }
     public void SpawnKilobyte()
     {
         lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(5);
+        kiloTimer = 5;
+        kiloBtn.interactable = false;
     }
     public void SpawnMegabyte()
     {
         lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(7);
+        megaTimer = 10;
+        megaBtn.interactable = false;
     }
     public void SpawnGigabyte()
     {
         lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(9);
+        gigaTimer = 20;
+        gigaBtn.interactable = false;
     }
 }
