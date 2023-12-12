@@ -46,28 +46,28 @@ public class Packet : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnemyPacket"))
+        if (other.CompareTag("PlayerPacket"))
         {
             return;
         }
 
-        Packet player_packet = other.GetComponent<Packet>();
-        if (player_packet == null)
+        Packet enemy_packet = other.GetComponent<Packet>();
+        if (enemy_packet == null)
         {
             return;
         }
 
 
-        if (this.radius > player_packet.radius)
+        if (this.radius > enemy_packet.radius)
         {
-            this.radius -= player_packet.radius;
+            this.radius -= enemy_packet.radius;
             this.gameObject.transform.localScale = new Vector3(this.radius, this.radius, this.radius);
             Destroy(other.gameObject);
         }
-        else if (this.radius < player_packet.radius)
+        else if (this.radius < enemy_packet.radius)
         {
-            player_packet.radius -= this.radius;
-            player_packet.gameObject.transform.localScale = new Vector3(player_packet.radius, player_packet.radius, player_packet.radius);
+            enemy_packet.radius -= this.radius;
+            enemy_packet.gameObject.transform.localScale = new Vector3(enemy_packet.radius, enemy_packet.radius, enemy_packet.radius);
             Destroy(this.gameObject);
         }
         else

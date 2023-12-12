@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - polePrefab: {fileID: 7710683423915587643, guid: 3d79f5c5e2849e8ef81e6304363eb959, type: 3}
+  - packetPrefab: {fileID: 7670841926080538307, guid: 72a612a8a24978c07a3711d4d032b545, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

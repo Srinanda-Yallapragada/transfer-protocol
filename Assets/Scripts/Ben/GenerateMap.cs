@@ -6,6 +6,7 @@ public class GenerateMap : MonoBehaviour
 {
     public int lane_count = 3;
     public GameObject polePrefab;
+    public GameObject packetPrefab;
 
     void Awake()
     {
@@ -38,18 +39,27 @@ public class GenerateMap : MonoBehaviour
         {
             GameObject go = new GameObject("Lane " + count.ToString());
             float length = Random.Range(20f, 50f); // aka, Max 100, Min 40
+
             // Home
             GameObject pole = Instantiate(polePrefab, new Vector3(length, 16.84f, 0), Quaternion.identity); 
             pole.name = "Home Side";
+            pole.AddComponent<SpawnPacket>();
             pole.transform.parent = go.transform;
 
+            // Enemy
             GameObject pole2 = Instantiate(polePrefab, new Vector3(-length, 16.84f, 0), Quaternion.identity);
             pole2.name = "Enemy Side";
+            // add enemy AI script later
             pole2.transform.parent = go.transform;
+
 
             go.transform.position = new Vector3(0f, 0f, i);
             go.AddComponent<LaneWireGeneration>();
             objs[count++] = go;
+
+            // Setting Spawn Packet Script
+            pole.GetComponent<SpawnPacket>().target = pole2.transform.GetChild(1).gameObject.transform.position;
+            pole.GetComponent<SpawnPacket>().packet_prefab = packetPrefab;
         }
 
         GameObject home = GameObject.FindGameObjectsWithTag("Home")[0];
