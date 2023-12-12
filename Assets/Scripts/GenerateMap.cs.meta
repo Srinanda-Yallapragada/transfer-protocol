@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: ecfb06bda8b3f50ab802482ad44bbfb9
+guid: 3b11ea073484077449f346a9a3e56358
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - outline: {fileID: 2100000, guid: b4fb2680cf3fd02fb8238d864aea94a9, type: 2}
-  - noOutline: {fileID: 2100000, guid: 4cdc17b2edd01605f88035b3dfb980f8, type: 2}
+  - polePrefab: {fileID: 7710683423915587643, guid: 3d79f5c5e2849e8ef81e6304363eb959, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
