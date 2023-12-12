@@ -144,6 +144,7 @@ MonoBehaviour:
   spawn_at: {x: -70, y: 32, z: 0}
   target: {x: 0, y: 32, z: 0}
   spawned_by: enemy
+  radius: 12
 --- !u!1001 &302579754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +578,7 @@ MonoBehaviour:
   spawn_at: {x: 0, y: 32, z: 0}
   target: {x: -70, y: 32, z: 0}
   spawned_by: player
+  radius: 7
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
