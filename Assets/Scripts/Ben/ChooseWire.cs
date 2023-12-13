@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -17,10 +18,10 @@ public class ChooseWire : MonoBehaviour
     public Button megaBtn;
     public Button gigaBtn;
 
-    public Text byteTxt;
-    public Text kiloTxt;
-    public Text megaTxt;
-    public Text gigaTxt;
+    public TextMeshProUGUI byteTxt;
+    public TextMeshProUGUI kiloTxt;
+    public TextMeshProUGUI megaTxt;
+    public TextMeshProUGUI gigaTxt;
 
     private bool[] isLaneOutlined;
     private int prevIndex = -1;

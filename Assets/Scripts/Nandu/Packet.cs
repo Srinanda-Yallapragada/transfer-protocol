@@ -11,8 +11,9 @@ public class Packet : MonoBehaviour
 
     public Vector3 target;
     public float radius;
+
     GameObject gameManager;
-    // takes values player, enemy
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +58,31 @@ public class Packet : MonoBehaviour
             Destroy(gameObject); // here gameobject is the packet prefab clone object set by default
         }
 
-        float singleStep = 10f * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, target, singleStep, 0.0f);
-        transform.SetPositionAndRotation(Vector3.MoveTowards(transform.position, target, 10f * Time.deltaTime), Quaternion.LookRotation(newDirection));
+        switch (radius)
+        {
+            case 3:
+                speed = 20f;
+                this.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
+                break;
+            case 5:
+                speed = 15f;
+                this.GetComponent<Renderer>().material.SetColor("_Color", Color.cyan);
+                break;
+            case 7:
+                speed = 10f;
+                this.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                break;
+            case 9:
+                speed = 5f;
+                this.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                break;
+            default:
+                break;
+        }
+
+        Vector3 rotateDir = target - transform.position;
+        Vector3 moveDir = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.SetPositionAndRotation(moveDir, Quaternion.FromToRotation(Vector3.up, rotateDir));
     }
     void OnTriggerEnter(Collider other)
     {
