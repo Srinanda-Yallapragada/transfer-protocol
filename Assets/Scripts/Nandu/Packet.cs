@@ -11,11 +11,13 @@ public class Packet : MonoBehaviour
 
     public Vector3 target;
     public float radius;
+    GameObject gameManager;
     // takes values player, enemy
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
     public void SetTarget(Vector3 t)
     {   // you can't use start. But this is just as good.
@@ -36,7 +38,22 @@ public class Packet : MonoBehaviour
     {
         if (transform.position == target)
         {
-            Debug.Log("deduct lives here");
+            switch (radius) {
+                case 3:
+                    gameManager.GetComponent<HpScript>().hitByte();
+                    break;
+                case 5:
+                    gameManager.GetComponent<HpScript>().hitKilo();
+                    break;
+                case 7:
+                    gameManager.GetComponent<HpScript>().hitMega();
+                    break;
+                case 9:
+                    gameManager.GetComponent<HpScript>().hitGiga();
+                    break;
+                default:
+                    break;
+            }
             Destroy(gameObject); // here gameobject is the packet prefab clone object set by default
         }
 
