@@ -7,15 +7,24 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
 
+    private ChooseWire GMPaused;
+
+    private void Start()
+    {
+        GMPaused = this.GetComponent<ChooseWire>();
+    }
+
     public void Pause()
     {
         Time.timeScale = 0;
+        GMPaused.isPaused = true;
         pauseMenu.SetActive(true);
         //pause state of game at some point
     }
     public void Resume()
     {
         Time.timeScale = 1;
+        GMPaused.isPaused = false;
         pauseMenu.SetActive(false);
         //resume game state
     }

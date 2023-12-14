@@ -23,6 +23,8 @@ public class ChooseWire : MonoBehaviour
     public TextMeshProUGUI megaTxt;
     public TextMeshProUGUI gigaTxt;
 
+    public bool isPaused = false;
+
     private bool[] isLaneOutlined;
     private int prevIndex = -1;
     private int currIndex = -1;
@@ -127,6 +129,7 @@ public class ChooseWire : MonoBehaviour
 
     void Select(int index)
     {
+        if (isPaused) return;
         // turns off current selected
         if (prevIndex != -1)
         {
