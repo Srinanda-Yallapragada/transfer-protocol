@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public class ChooseWire : MonoBehaviour
 {
     public GameObject[] lanes;
-	public Material outline;
-	public Material noOutline;
+    public Material outline;
+    public Material noOutline;
 
     public Button byteBtn;
     public Button kiloBtn;
@@ -28,10 +28,12 @@ public class ChooseWire : MonoBehaviour
     private bool[] isLaneOutlined;
     private int prevIndex = -1;
     private int currIndex = -1;
-    private float byteTimer;  
+    private float byteTimer;
     private float kiloTimer;
     private float megaTimer;
     private float gigaTimer;
+
+    //Script AI;
 
     void Start()
     {
@@ -86,7 +88,7 @@ public class ChooseWire : MonoBehaviour
         {
             byteTimer -= Time.deltaTime;
             byteTxt.text = Mathf.FloorToInt(byteTimer) + "s";
-        } 
+        }
         else if (Mathf.FloorToInt(byteTimer) <= 0)
         {
             byteTxt.text = "";
@@ -160,25 +162,33 @@ public class ChooseWire : MonoBehaviour
 
     public void SpawnByte()
     {
-        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(3);
+        this.GetComponent<AI>().player_spawned.spawned_byte = true;
+        this.GetComponent<AI>().player_spawned.byte_lane = currIndex;
+        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(3, "PlayerPacket");
         byteTimer = 2;
         byteBtn.interactable = false;
     }
     public void SpawnKilobyte()
     {
-        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(5);
-        kiloTimer = 5;
+        this.GetComponent<AI>().player_spawned.spanwed_kilo = true;
+        this.GetComponent<AI>().player_spawned.kilo_lane = currIndex;
+        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(5, "PlayerPacket");
+        kiloTimer = 4f;
         kiloBtn.interactable = false;
     }
     public void SpawnMegabyte()
     {
-        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(7);
-        megaTimer = 10;
+        this.GetComponent<AI>().player_spawned.spanwed_mega = true;
+        this.GetComponent<AI>().player_spawned.mega_lane = currIndex;
+        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(7, "PlayerPacket");
+        megaTimer = 9;
         megaBtn.interactable = false;
     }
     public void SpawnGigabyte()
     {
-        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(9);
+        this.GetComponent<AI>().player_spawned.spanwed_giga = true;
+        this.GetComponent<AI>().player_spawned.giga_lane = currIndex;
+        lanes[currIndex].transform.GetChild(0).gameObject.GetComponent<SpawnPacket>().spawn(9, "PlayerPacket");
         gigaTimer = 20;
         gigaBtn.interactable = false;
     }

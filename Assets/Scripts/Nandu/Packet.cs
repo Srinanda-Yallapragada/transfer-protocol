@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Sprites;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 
 public class Packet : MonoBehaviour
 {
+    public AudioSource src;
+    public AudioClip packetCollision;
 
     public Vector3 target;
-    public float radius;
+    public int radius;
 
     GameObject gameManager;
     private float speed;
@@ -19,15 +22,18 @@ public class Packet : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        src = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+        src.clip = packetCollision;
+
     }
     public void SetTarget(Vector3 t)
-    {   // you can't use start. But this is just as good.
+    {
         target = t;
     }
 
 
-    public void SetRadius(float t)
-    {   // you can't use start. But this is just as good.
+    public void SetRadius(int t)
+    {
         radius = t;
         gameObject.transform.localScale = new Vector3(radius, radius, radius);
 
@@ -38,19 +44,41 @@ public class Packet : MonoBehaviour
     void Update()
     {
         if (transform.position == target)
+        //check this.tage and decidte hitByte or byteDamage or hitPacket
         {
-            switch (radius) {
+            switch (radius)
+            {
                 case 3:
-                    gameManager.GetComponent<HpScript>().hitByte();
+                    if (this.CompareTag("PlayerPacket"))
+                        gameManager.GetComponent<HpScript>().hitByte();
+                    else
+                    {
+                        gameManager.GetComponent<HpScript>().byteDamage();
+                    }
                     break;
                 case 5:
-                    gameManager.GetComponent<HpScript>().hitKilo();
+                    if (this.CompareTag("PlayerPacket"))
+                        gameManager.GetComponent<HpScript>().hitKilo();
+                    else
+                    {
+                        gameManager.GetComponent<HpScript>().kiloDamage();
+                    }
                     break;
                 case 7:
-                    gameManager.GetComponent<HpScript>().hitMega();
+                    if (this.CompareTag("PlayerPacket"))
+                        gameManager.GetComponent<HpScript>().hitMega();
+                    else
+                    {
+                        gameManager.GetComponent<HpScript>().megaDamage();
+                    }
                     break;
                 case 9:
-                    gameManager.GetComponent<HpScript>().hitGiga();
+                    if (this.CompareTag("PlayerPacket"))
+                        gameManager.GetComponent<HpScript>().hitGiga();
+                    else
+                    {
+                        gameManager.GetComponent<HpScript>().gigaDamage();
+                    }
                     break;
                 default:
                     break;
@@ -60,20 +88,25 @@ public class Packet : MonoBehaviour
 
         switch (radius)
         {
+            case 1:
+            case 2:
             case 3:
-                speed = 20f;
+                speed = 10f;
                 this.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
+            case 4:
             case 5:
-                speed = 15f;
+                speed = 7.5f;
                 this.GetComponent<Renderer>().material.SetColor("_Color", Color.cyan);
                 break;
+            case 6:
             case 7:
-                speed = 10f;
+                speed = 5f;
                 this.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
+            case 8:
             case 9:
-                speed = 5f;
+                speed = 2.5f;
                 this.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                 break;
             default:
@@ -86,6 +119,12 @@ public class Packet : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+
+        if (this.CompareTag(other.tag))
+        {
+            return;
+        }
+
         if (other.CompareTag("PlayerPacket"))
         {
             return;

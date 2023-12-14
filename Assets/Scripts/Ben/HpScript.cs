@@ -49,7 +49,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = goodByteHit;
         audioSrc.Play();
-        enemyHp += 1;
+        enemyHp += 5;
         if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
@@ -57,7 +57,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = goodKiloHit;
         audioSrc.Play();
-        enemyHp += 5;
+        enemyHp += 10;
         if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
@@ -65,7 +65,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = goodMegaHit;
         audioSrc.Play();
-        enemyHp += 10;
+        enemyHp += 20;
         if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
@@ -73,7 +73,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = goodGigaHit;
         audioSrc.Play();
-        enemyHp += 20;
+        enemyHp += 40;
         if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
@@ -84,7 +84,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = byteHit;
         audioSrc.Play();
-        houseHp += 1;
+        houseHp += 5;
         if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
@@ -92,7 +92,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = kiloHit;
         audioSrc.Play();
-        houseHp += 5;
+        houseHp += 10;
         if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
@@ -100,7 +100,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = megaHit;
         audioSrc.Play();
-        houseHp += 10;
+        houseHp += 20;
         if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
@@ -108,7 +108,7 @@ public class HpScript : MonoBehaviour
     {
         audioSrc.clip = gigaHit;
         audioSrc.Play();
-        houseHp += 20;
+        houseHp += 40;
         if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }

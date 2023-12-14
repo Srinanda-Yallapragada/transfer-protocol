@@ -11,9 +11,10 @@ public class GenerateMap : MonoBehaviour
     void Awake()
     {
         // didnt wanna deal with mathing it out
-        int lane_count = Random.Range(2, 6);
+        int lane_count = Random.Range(4, 6);
         int[] coors;
-        switch (lane_count) {
+        switch (lane_count)
+        {
             case 1:
                 coors = new int[1] { 0 };
                 break;
@@ -42,7 +43,7 @@ public class GenerateMap : MonoBehaviour
             float length = Random.Range(20f, 45f); // aka, Max 90, Min 40
 
             // Home
-            GameObject pole = Instantiate(polePrefab, new Vector3(length, 16.84f, 0), Quaternion.identity); 
+            GameObject pole = Instantiate(polePrefab, new Vector3(length, 16.84f, 0), Quaternion.identity);
             pole.name = "Home Side";
             pole.AddComponent<SpawnPacket>();
             pole.transform.parent = go.transform;
@@ -50,7 +51,7 @@ public class GenerateMap : MonoBehaviour
             // Enemy
             GameObject pole2 = Instantiate(polePrefab, new Vector3(-length, 16.84f, 0), Quaternion.identity);
             pole2.name = "Enemy Side";
-            // add enemy AI script later
+            pole2.AddComponent<SpawnPacket>();
             pole2.transform.parent = go.transform;
 
 
@@ -58,9 +59,13 @@ public class GenerateMap : MonoBehaviour
             go.AddComponent<LaneWireGeneration>();
             objs[count++] = go;
 
-            // Setting Spawn Packet Script
+            // Setting Spawn Packet Script Player
             pole.GetComponent<SpawnPacket>().target = pole2.transform.GetChild(1).gameObject.transform.position;
             pole.GetComponent<SpawnPacket>().packet_prefab = packetPrefab;
+
+            // Setting Spawn Packet Script AI
+            pole2.GetComponent<SpawnPacket>().target = pole.transform.GetChild(1).gameObject.transform.position;
+            pole2.GetComponent<SpawnPacket>().packet_prefab = packetPrefab;
         }
 
         GameObject home = GameObject.FindGameObjectsWithTag("Home")[0];
@@ -71,5 +76,7 @@ public class GenerateMap : MonoBehaviour
         enemy.GetComponent<BaseWireGeneration>().isEnemy = true;
 
         this.GetComponent<ChooseWire>().lanes = objs;
+        this.GetComponent<AI>().lanes = objs;
+
     }
 }
