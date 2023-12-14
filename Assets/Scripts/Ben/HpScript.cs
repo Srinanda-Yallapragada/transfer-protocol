@@ -29,6 +29,20 @@ public class HpScript : MonoBehaviour
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
 
+    private void Update()
+    {
+        if (enemyHp >= 100)
+        {
+            enemyHp = 100;
+            this.GetComponent<GameEndEvents>().GameEnd("You Win!");
+        }
+        if (houseHp >= 100)
+        {
+            houseHp = 100;
+            this.GetComponent<GameEndEvents>().GameEnd("You Lose.");
+        }
+    }
+
     // ------- Enemy hp -------
 
     public void hitByte()
@@ -36,6 +50,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = goodByteHit;
         audioSrc.Play();
         enemyHp += 1;
+        if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
     public void hitKilo()
@@ -43,6 +58,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = goodKiloHit;
         audioSrc.Play();
         enemyHp += 5;
+        if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
     public void hitMega()
@@ -50,6 +66,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = goodMegaHit;
         audioSrc.Play();
         enemyHp += 10;
+        if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
     public void hitGiga()
@@ -57,6 +74,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = goodGigaHit;
         audioSrc.Play();
         enemyHp += 20;
+        if (enemyHp >= 100) { enemyHp = 100; }
         enemyHpTxt.text = enemyHp + "%";
     }
 
@@ -67,6 +85,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = byteHit;
         audioSrc.Play();
         houseHp += 1;
+        if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
     public void kiloDamage()
@@ -74,6 +93,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = kiloHit;
         audioSrc.Play();
         houseHp += 5;
+        if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
     public void megaDamage()
@@ -81,6 +101,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = megaHit;
         audioSrc.Play();
         houseHp += 10;
+        if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
     public void gigaDamage()
@@ -88,6 +109,7 @@ public class HpScript : MonoBehaviour
         audioSrc.clip = gigaHit;
         audioSrc.Play();
         houseHp += 20;
+        if (houseHp >= 100) { houseHp = 100; }
         houseHpTxt.text = "Install: " + houseHp + "%";
     }
 }
